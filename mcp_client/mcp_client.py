@@ -27,16 +27,13 @@ class MCPClient:
         try:
             read, write = await self.exit_stack.enter_async_context(
                 stdio_client(
-                    server=StdioServerParameters(
-                        command="sh",
-                        args=[
-                            "-c",
-                            f"{sys.executable} {self.server_path} 2>/dev/null",
-                        ],
-                        env=None,
+                   server=StdioServerParameters(
+                   command=sys.executable,
+                   args=[self.server_path],
+                   env=None,
+                            )
                     )
                 )
-            )
             client_session = await self.exit_stack.enter_async_context(
                 ClientSession(read, write)
             )
