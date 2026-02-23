@@ -17,7 +17,7 @@ class MCPClient:
 
     async def __aenter__ (self) -> Self:
         cls = type(self)
-        cls.client_session = await self._connnect_to_server()
+        cls.client_session = await self._connect_to_server()
         return self 
     
     async def __aexit__(self, *_)-> None:
